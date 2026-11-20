@@ -1,10 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="CorePilot - An interactive CPU process scheduling simulator with Queue, Priority Queue, and Circular Queue visualizations.">
+
     <title>CorePilot | CPU Scheduling Simulator</title>
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -54,8 +61,11 @@
             <!-- Dashboard Section -->
             <section id="dashboard" class="dashboard-section">
 
+                <!-- Welcome Banner -->
                 <div class="welcome-section">
+
                     <h2>Understand CPU Scheduling Visually</h2>
+
                     <p>
                         Explore scheduling algorithms, visualize process
                         execution, and understand how data structures
@@ -63,6 +73,7 @@
                     </p>
 
                     <a href="#simulator">Explore Simulator</a>
+
                 </div>
 
 
@@ -97,37 +108,60 @@
 
                     <div class="algorithm-cards">
 
+                        <!-- FCFS -->
                         <article class="algorithm-card">
+
                             <h3>First Come First Serve</h3>
+
                             <p>FCFS</p>
+
                             <span>Data Structure: Queue</span>
+
                             <p>
                                 Processes execute in the order
                                 they arrive.
                             </p>
+
                             <a href="#simulator">Explore</a>
+
                         </article>
 
+
+                        <!-- Priority Scheduling -->
                         <article class="algorithm-card">
+
                             <h3>Priority Scheduling</h3>
+
                             <p>Priority Queue</p>
+
                             <span>Data Structure: Min-Heap</span>
+
                             <p>
                                 Processes execute according
                                 to their priority.
                             </p>
+
                             <a href="#simulator">Explore</a>
+
                         </article>
 
+
+                        <!-- Round Robin -->
                         <article class="algorithm-card">
+
                             <h3>Round Robin</h3>
+
                             <p>RR</p>
+
                             <span>Data Structure: Circular Queue</span>
+
                             <p>
                                 Processes receive CPU time in
                                 fixed time intervals.
                             </p>
+
                             <a href="#simulator">Explore</a>
+
                         </article>
 
                     </div>
@@ -137,16 +171,19 @@
             </section>
 
 
-            <!-- Simulator Section -->
+
+            <!-- CPU Scheduling Simulator -->
             <section id="simulator" class="simulator-section">
 
                 <h2>CPU Scheduling Simulator</h2>
+
                 <p>
                     Create processes and simulate how the CPU
                     schedules their execution.
                 </p>
 
-                <!-- Process Input -->
+
+                <!-- Process Configuration -->
                 <div class="process-input">
 
                     <h3>Process Configuration</h3>
@@ -155,37 +192,59 @@
 
                         <div>
                             <label for="process-id">Process ID</label>
-                            <input type="text" id="process-id"
-                                placeholder="P1">
+
+                            <input
+                                type="text"
+                                id="process-id"
+                                placeholder="P1"
+                            >
                         </div>
 
                         <div>
                             <label for="arrival-time">Arrival Time</label>
-                            <input type="number" id="arrival-time"
-                                min="0" placeholder="0">
+
+                            <input
+                                type="number"
+                                id="arrival-time"
+                                min="0"
+                                placeholder="0"
+                            >
                         </div>
 
                         <div>
                             <label for="burst-time">Burst Time</label>
-                            <input type="number" id="burst-time"
-                                min="1" placeholder="5">
+
+                            <input
+                                type="number"
+                                id="burst-time"
+                                min="1"
+                                placeholder="5"
+                            >
                         </div>
 
                         <div>
                             <label for="priority">Priority</label>
-                            <input type="number" id="priority"
-                                min="1" placeholder="1">
+
+                            <input
+                                type="number"
+                                id="priority"
+                                min="1"
+                                placeholder="1"
+                            >
                         </div>
 
                         <button type="submit">Add Process</button>
 
                     </form>
 
+
+                    <!-- Process Table -->
                     <div class="process-table">
 
                         <h3>Process List</h3>
 
                         <table>
+
                             <thead>
                                 <tr>
                                     <th>Process</th>
@@ -198,6 +257,7 @@
                             <tbody id="process-list">
                                 <!-- Processes will appear here -->
                             </tbody>
+
                         </table>
 
                     </div>
@@ -205,7 +265,8 @@
                 </div>
 
 
-                <!-- Scheduling Controls -->
+
+                <!-- Simulation Controls -->
                 <div class="simulation-controls">
 
                     <h3>Simulation Settings</h3>
@@ -214,30 +275,44 @@
                         <label for="algorithm">Select Algorithm</label>
 
                         <select id="algorithm">
+
                             <option value="fcfs">FCFS</option>
+
                             <option value="priority">
                                 Priority Scheduling
                             </option>
+
                             <option value="round-robin">
                                 Round Robin
                             </option>
+
                         </select>
                     </div>
 
+
                     <div>
                         <label for="time-quantum">Time Quantum</label>
-                        <input type="number" id="time-quantum"
-                            min="1" placeholder="Enter time quantum">
+
+                        <input
+                            type="number"
+                            id="time-quantum"
+                            min="1"
+                            placeholder="Enter time quantum"
+                        >
                     </div>
 
+
                     <div class="simulation-buttons">
+
                         <button type="button">Start</button>
                         <button type="button">Pause</button>
                         <button type="button">Step</button>
                         <button type="button">Restart</button>
+
                     </div>
 
                 </div>
+
 
 
                 <!-- CPU Execution -->
@@ -246,11 +321,26 @@
                     <h3>CPU Execution</h3>
 
                     <div class="cpu-status">
-                        <p>CPU Status: <span>Idle</span></p>
-                        <p>Current Process: <span>None</span></p>
-                        <p>Simulation Time: <span>0</span></p>
+
+                        <p>
+                            CPU Status:
+                            <span>Idle</span>
+                        </p>
+
+                        <p>
+                            Current Process:
+                            <span>None</span>
+                        </p>
+
+                        <p>
+                            Simulation Time:
+                            <span>0</span>
+                        </p>
+
                     </div>
 
+
+                    <!-- Gantt Chart -->
                     <div class="gantt-chart">
 
                         <h3>Gantt Chart</h3>
@@ -264,12 +354,14 @@
                 </div>
 
 
+
                 <!-- Scheduling Results -->
                 <div class="simulation-results">
 
                     <h3>Scheduling Results</h3>
 
                     <table>
+
                         <thead>
                             <tr>
                                 <th>Process</th>
@@ -282,11 +374,22 @@
                         <tbody id="simulation-results">
                             <!-- Results will appear here -->
                         </tbody>
+
                     </table>
 
+
                     <div class="average-metrics">
-                        <p>Average Waiting Time: <span>--</span></p>
-                        <p>Average Turnaround Time: <span>--</span></p>
+
+                        <p>
+                            Average Waiting Time:
+                            <span>--</span>
+                        </p>
+
+                        <p>
+                            Average Turnaround Time:
+                            <span>--</span>
+                        </p>
+
                     </div>
 
                 </div>
@@ -294,7 +397,8 @@
             </section>
 
 
-            <!-- DSA Visualizer Section -->
+
+            <!-- DSA Visualizer -->
             <section id="dsa-visualizer" class="dsa-section">
 
                 <h2>Data Structure Visualizer</h2>
@@ -304,49 +408,78 @@
                     operate during CPU scheduling.
                 </p>
 
+
                 <div class="dsa-cards">
 
+                    <!-- Queue -->
                     <article class="dsa-card">
+
                         <h3>Queue</h3>
+
                         <p>First In, First Out (FIFO)</p>
+
                         <div id="queue-visualization">
                             <!-- Queue visualization -->
                         </div>
+
                         <div class="queue-information">
+
                             <p>Front: --</p>
                             <p>Rear: --</p>
+
                         </div>
+
                     </article>
 
+
+                    <!-- Priority Queue -->
                     <article class="dsa-card">
+
                         <h3>Priority Queue (Min-Heap)</h3>
+
                         <p>Processes arranged by priority.</p>
+
                         <div id="heap-visualization">
                             <!-- Heap visualization -->
                         </div>
+
                     </article>
 
+
+                    <!-- Circular Queue -->
                     <article class="dsa-card">
+
                         <h3>Circular Queue</h3>
-                        <p>Processes move through a circular structure.</p>
+
+                        <p>
+                            Processes move through a circular structure.
+                        </p>
+
                         <div id="circular-queue-visualization">
                             <!-- Circular Queue visualization -->
                         </div>
+
                     </article>
 
                 </div>
 
+
+                <!-- Operation Explanation -->
                 <div class="operation-explanation">
+
                     <h3>Operation Explanation</h3>
+
                     <p id="operation-description">
                         Data structure operations will be explained here.
                     </p>
+
                 </div>
 
             </section>
 
 
-            <!-- Algorithm Comparison Section -->
+
+            <!-- Algorithm Comparison -->
             <section id="comparison" class="comparison-section">
 
                 <h2>Algorithm Comparison</h2>
@@ -360,9 +493,11 @@
                     Compare Algorithms
                 </button>
 
+
                 <div class="comparison-table">
 
                     <table>
+
                         <thead>
                             <tr>
                                 <th>Algorithm</th>
@@ -374,11 +509,13 @@
                         <tbody id="comparison-results">
                             <!-- Comparison results -->
                         </tbody>
+
                     </table>
 
                 </div>
 
             </section>
+
 
 
             <!-- About Section -->
@@ -393,6 +530,8 @@
                     structures help manage process execution.
                 </p>
 
+
+                <!-- Project Information -->
                 <div class="project-information">
 
                     <h3>Our Project</h3>
@@ -415,13 +554,20 @@
                     <div class="admin-cards">
 
                         <article class="admin-card">
+
                             <h4>Administrator 1</h4>
+
                             <p>Information will be added later.</p>
+
                         </article>
 
+
                         <article class="admin-card">
+
                             <h4>Administrator 2</h4>
+
                             <p>Information will be added later.</p>
+
                         </article>
 
                     </div>
@@ -429,6 +575,7 @@
                 </div>
 
             </section>
+
 
 
             <!-- Footer -->
@@ -441,4 +588,5 @@
     </div>
 
 </body>
+
 </html>
