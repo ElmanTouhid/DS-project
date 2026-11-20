@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CorePilot | CPU Scheduling Simulator</title>
+</head>
+
+<body>
+
+    <!-- Main Application -->
+    <div class="app-container">
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h2>CorePilot</h2>
+                <p>CPU Scheduling Simulator</p>
+            </div>
+
+            <nav class="navigation">
+                <ul>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#simulator">Simulator</a></li>
+                    <li><a href="#dsa-visualizer">DSA Visualizer</a></li>
+                    <li><a href="#comparison">Algorithm Comparison</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Navigation -->
+            <header class="topbar">
+
+                <div class="page-title">
+                    <h1>Dashboard</h1>
+                    <p>Welcome to CorePilot</p>
+                </div>
+
+                <div class="topbar-actions">
+                    <span>CPU Scheduling Simulator</span>
+                </div>
+
+            </header>
+
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="dashboard-section">
+
+                <div class="welcome-section">
+                    <h2>Understand CPU Scheduling Visually</h2>
+                    <p>
+                        Explore scheduling algorithms, visualize process
+                        execution, and understand how data structures
+                        manage CPU scheduling.
+                    </p>
+
+                    <a href="#simulator">Explore Simulator</a>
+                </div>
+
+
+                <!-- Overview Cards -->
+                <div class="overview-cards">
+
+                    <div class="overview-card">
+                        <h3>Scheduling Algorithms</h3>
+                        <p>03</p>
+                        <span>FCFS, Priority, Round Robin</span>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Data Structures</h3>
+                        <p>03</p>
+                        <span>Queue, Min-Heap, Circular Queue</span>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Simulation Mode</h3>
+                        <p>Interactive</p>
+                        <span>Step-by-step process execution</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Algorithm Overview -->
+                <div class="algorithm-overview">
+
+                    <h2>Scheduling Algorithms</h2>
+
+                    <div class="algorithm-cards">
+
+                        <article class="algorithm-card">
+                            <h3>First Come First Serve</h3>
+                            <p>FCFS</p>
+                            <span>Data Structure: Queue</span>
+                            <p>
+                                Processes execute in the order
+                                they arrive.
+                            </p>
+                            <a href="#simulator">Explore</a>
+                        </article>
+
+                        <article class="algorithm-card">
+                            <h3>Priority Scheduling</h3>
+                            <p>Priority Queue</p>
+                            <span>Data Structure: Min-Heap</span>
+                            <p>
+                                Processes execute according
+                                to their priority.
+                            </p>
+                            <a href="#simulator">Explore</a>
+                        </article>
+
+                        <article class="algorithm-card">
+                            <h3>Round Robin</h3>
+                            <p>RR</p>
+                            <span>Data Structure: Circular Queue</span>
+                            <p>
+                                Processes receive CPU time in
+                                fixed time intervals.
+                            </p>
+                            <a href="#simulator">Explore</a>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Simulator Section -->
+            <section id="simulator" class="simulator-section">
+
+                <h2>CPU Scheduling Simulator</h2>
+                <p>
+                    Create processes and simulate how the CPU
+                    schedules their execution.
+                </p>
+
+                <!-- Process Input -->
+                <div class="process-input">
+
+                    <h3>Process Configuration</h3>
+
+                    <form id="process-form">
+
+                        <div>
+                            <label for="process-id">Process ID</label>
+                            <input type="text" id="process-id"
+                                placeholder="P1">
+                        </div>
+
+                        <div>
+                            <label for="arrival-time">Arrival Time</label>
+                            <input type="number" id="arrival-time"
+                                min="0" placeholder="0">
+                        </div>
+
+                        <div>
+                            <label for="burst-time">Burst Time</label>
+                            <input type="number" id="burst-time"
+                                min="1" placeholder="5">
+                        </div>
+
+                        <div>
+                            <label for="priority">Priority</label>
+                            <input type="number" id="priority"
+                                min="1" placeholder="1">
+                        </div>
+
+                        <button type="submit">Add Process</button>
+
+                    </form>
+
+                    <div class="process-table">
+
+                        <h3>Process List</h3>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Process</th>
+                                    <th>Arrival Time</th>
+                                    <th>Burst Time</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="process-list">
+                                <!-- Processes will appear here -->
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Scheduling Controls -->
+                <div class="simulation-controls">
+
+                    <h3>Simulation Settings</h3>
+
+                    <div>
+                        <label for="algorithm">Select Algorithm</label>
+
+                        <select id="algorithm">
+                            <option value="fcfs">FCFS</option>
+                            <option value="priority">
+                                Priority Scheduling
+                            </option>
+                            <option value="round-robin">
+                                Round Robin
+                            </option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="time-quantum">Time Quantum</label>
+                        <input type="number" id="time-quantum"
+                            min="1" placeholder="Enter time quantum">
+                    </div>
+
+                    <div class="simulation-buttons">
+                        <button type="button">Start</button>
+                        <button type="button">Pause</button>
+                        <button type="button">Step</button>
+                        <button type="button">Restart</button>
+                    </div>
+
+                </div>
+
+
+                <!-- CPU Execution -->
+                <div class="cpu-visualization">
+
+                    <h3>CPU Execution</h3>
+
+                    <div class="cpu-status">
+                        <p>CPU Status: <span>Idle</span></p>
+                        <p>Current Process: <span>None</span></p>
+                        <p>Simulation Time: <span>0</span></p>
+                    </div>
+
+                    <div class="gantt-chart">
+
+                        <h3>Gantt Chart</h3>
+
+                        <div id="gantt-chart">
+                            <!-- Gantt chart will appear here -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Scheduling Results -->
+                <div class="simulation-results">
+
+                    <h3>Scheduling Results</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Process</th>
+                                <th>Completion Time</th>
+                                <th>Turnaround Time</th>
+                                <th>Waiting Time</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="simulation-results">
+                            <!-- Results will appear here -->
+                        </tbody>
+                    </table>
+
+                    <div class="average-metrics">
+                        <p>Average Waiting Time: <span>--</span></p>
+                        <p>Average Turnaround Time: <span>--</span></p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- DSA Visualizer Section -->
+            <section id="dsa-visualizer" class="dsa-section">
+
+                <h2>Data Structure Visualizer</h2>
+
+                <p>
+                    See how the underlying data structures
+                    operate during CPU scheduling.
+                </p>
+
+                <div class="dsa-cards">
+
+                    <article class="dsa-card">
+                        <h3>Queue</h3>
+                        <p>First In, First Out (FIFO)</p>
+                        <div id="queue-visualization">
+                            <!-- Queue visualization -->
+                        </div>
+                        <div class="queue-information">
+                            <p>Front: --</p>
+                            <p>Rear: --</p>
+                        </div>
+                    </article>
+
+                    <article class="dsa-card">
+                        <h3>Priority Queue (Min-Heap)</h3>
+                        <p>Processes arranged by priority.</p>
+                        <div id="heap-visualization">
+                            <!-- Heap visualization -->
+                        </div>
+                    </article>
+
+                    <article class="dsa-card">
+                        <h3>Circular Queue</h3>
+                        <p>Processes move through a circular structure.</p>
+                        <div id="circular-queue-visualization">
+                            <!-- Circular Queue visualization -->
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="operation-explanation">
+                    <h3>Operation Explanation</h3>
+                    <p id="operation-description">
+                        Data structure operations will be explained here.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- Algorithm Comparison Section -->
+            <section id="comparison" class="comparison-section">
+
+                <h2>Algorithm Comparison</h2>
+
+                <p>
+                    Compare scheduling algorithms using the same
+                    process configuration.
+                </p>
+
+                <button type="button">
+                    Compare Algorithms
+                </button>
+
+                <div class="comparison-table">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Average Waiting Time</th>
+                                <th>Average Turnaround Time</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="comparison-results">
+                            <!-- Comparison results -->
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- About Section -->
+            <section id="about" class="about-section">
+
+                <h2>About CorePilot</h2>
+
+                <p>
+                    CorePilot is an interactive CPU Process Scheduling
+                    Simulator designed to demonstrate how operating
+                    system scheduling algorithms work and how data
+                    structures help manage process execution.
+                </p>
+
+                <div class="project-information">
+
+                    <h3>Our Project</h3>
+
+                    <p>
+                        The platform demonstrates FCFS, Priority
+                        Scheduling, and Round Robin using custom
+                        implementations of Queue, Min-Heap Priority
+                        Queue, and Circular Queue.
+                    </p>
+
+                </div>
+
+
+                <!-- Administrator Information -->
+                <div class="admin-section">
+
+                    <h3>About the Administrators</h3>
+
+                    <div class="admin-cards">
+
+                        <article class="admin-card">
+                            <h4>Administrator 1</h4>
+                            <p>Information will be added later.</p>
+                        </article>
+
+                        <article class="admin-card">
+                            <h4>Administrator 2</h4>
+                            <p>Information will be added later.</p>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Footer -->
+            <footer class="footer">
+                <!-- Team names will be added later -->
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
