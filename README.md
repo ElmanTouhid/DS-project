@@ -1,13 +1,14 @@
 # CorePilot
 ### An Interactive CPU Process Scheduling Simulator Using Queues and Priority Queues
 
-CorePilot is a Data Structures and Algorithms (DSA) course project that demonstrates how an operating system can decide which process gets CPU time. It simulates common CPU scheduling algorithms and makes their decisions visible through process queues, a live execution timeline, Gantt charts, and performance metrics.
+CorePilot is a **Data Structures and Algorithms (DSA) course project** that demonstrates how an operating system selects processes for CPU execution. It turns CPU scheduling into an interactive website where users can create processes, run scheduling algorithms, watch data structures operate, and compare performance.
 
-The goal is to help users understand not only **which process runs next**, but also **why the scheduling algorithm selects it** and how different algorithms affect waiting time and turnaround time.
+The central goal is to make the DSA concepts visible and explainable. CorePilot will not simply display scheduling results: it will demonstrate how **Queue, Circular Queue, and Priority Queue (implemented with a Min-Heap)** make scheduling decisions.
 
 > **Project type:** DSA course project  
-> **Current status:** Planning / design  
-> **Scope:** Educational simulation — CorePilot does not control the computer's real CPU or schedule actual operating-system processes.
+> **Implementation language:** JavaScript  
+> **Deployment:** Vercel  
+> **Scope:** Educational simulation only; CorePilot does not control the computer's real CPU or schedule actual operating-system processes.
 
 ---
 
@@ -18,65 +19,64 @@ The goal is to help users understand not only **which process runs next**, but a
 - [Scheduling Algorithms](#scheduling-algorithms)
 - [How CorePilot Works](#how-corepilot-works)
 - [Core Features](#core-features)
-- [Data Structures and DSA Concepts](#data-structures-and-dsa-concepts)
+- [DSA Implementation](#dsa-implementation)
 - [Performance Metrics](#performance-metrics)
-- [Proposed Technology Stack](#proposed-technology-stack)
+- [Technology Stack](#technology-stack)
 - [Team Members](#team-members)
-- [Planned Development Phases](#planned-development-phases)
-- [Project Scope and Limitations](#project-scope-and-limitations)
+- [Development Roadmap](#development-roadmap)
+- [Scope and Limitations](#scope-and-limitations)
 
 ---
 
 ## Project Overview
 
-Modern computers handle many processes that compete for CPU time. Since a CPU core can execute only one process at a time, a scheduling policy is needed to decide which ready process should execute next.
+A computer may have many processes waiting for CPU time, while a CPU core can execute only one process at a time. A scheduling algorithm decides which ready process should execute next.
 
-CorePilot recreates this decision-making process in an interactive environment. Users can create processes manually, generate sample workloads, choose a scheduling algorithm, and run the simulation. The application then manages process arrival, ready queues, CPU execution, and completion automatically.
+CorePilot simulates this process in an interactive environment. Users can add processes manually, generate sample workloads, choose a scheduling algorithm, and watch the simulation progress. The website will visualize the ready data structure, the currently running process, and the CPU execution timeline.
 
-The same workload can also be tested with different algorithms so users can compare their behavior and performance.
+CorePilot is built as a **JavaScript-based DSA project**. The team will implement the required data structures and their operations manually instead of relying on built-in Queue or Priority Queue libraries. HTML and CSS will provide the website interface, while JavaScript will handle the data structures, scheduling algorithms, simulation, and interactive behavior.
 
 ## Objectives
 
-- Demonstrate practical applications of queues, circular queues, priority queues, and heaps.
+- Apply Queue, Circular Queue, Priority Queue, and Heap concepts to a practical problem.
+- Implement the core data structures manually in JavaScript.
+- Demonstrate operations such as enqueue, dequeue, insertion, extraction, and heap adjustment.
 - Simulate how processes arrive, wait, execute, and complete.
-- Implement multiple CPU scheduling algorithms.
-- Visualize scheduling decisions and process execution.
-- Calculate standard scheduling performance metrics automatically.
-- Compare algorithms using the same set of processes.
-- Explain the relationship between data structures and scheduling behavior.
+- Visualize scheduling decisions and changes in the ready data structures.
+- Calculate standard CPU scheduling performance metrics.
+- Compare scheduling algorithms using the same process workload.
+- Keep the implementation clear enough for both team members to explain during the project presentation.
 
 ## Scheduling Algorithms
 
-The planned first version includes the following algorithms:
+The planned first version includes three algorithms:
 
-| Algorithm | How it works | Main data structure |
+| Algorithm | How it works | Data structure |
 |---|---|---|
-| **First Come, First Served (FCFS)** | Executes ready processes in arrival order. | Queue |
-| **Priority Scheduling** | Selects the highest-priority process from the ready processes. | Priority Queue / Heap |
-| **Round Robin (RR)** | Gives each ready process a fixed time quantum; unfinished processes return to the back of the queue. | Circular Queue |
+| **First Come, First Served (FCFS)** | Executes ready processes in arrival order. | Queue (FIFO) |
+| **Priority Scheduling** | Selects the ready process with the highest priority. | Priority Queue (Min-Heap) |
+| **Round Robin (RR)** | Gives each ready process a fixed time quantum; unfinished processes return to the queue. | Circular Queue |
 
 ### Scheduling rules
 
-To keep simulations consistent and results reproducible, the initial implementation will use these rules:
-
 - A process cannot execute before its arrival time.
-- Only one process uses the simulated CPU at a time.
+- Only one process executes on the simulated CPU at a time.
 - A smaller priority number represents a higher priority.
-- Equal-priority processes are ordered by arrival time; if arrival times are also equal, process ID/order can be used as a deterministic tie-breaker.
+- Equal-priority processes are handled using a deterministic tie-breaker, such as arrival order.
 - Priority Scheduling will initially be **non-preemptive**: once a process starts, it runs until completion.
 - Round Robin uses a configurable time quantum.
 - If no process is ready, the CPU remains idle until the next process arrives.
 
 ## How CorePilot Works
 
-1. **Create processes:** The user enters processes manually, generates a random workload, or loads a sample scenario.
-2. **Configure the workload:** Each process has an ID, arrival time, burst time, and priority.
-3. **Choose an algorithm:** The user selects FCFS, Priority Scheduling, Round Robin, or comparison mode.
-4. **Configure options:** For Round Robin, the user sets the time quantum.
-5. **Run the simulation:** The scheduling engine automatically handles arrivals, ready queues, CPU allocation, and process completion.
-6. **Watch the execution:** The interface updates process states, queue contents, the current CPU process, and the Gantt chart.
-7. **Review the results:** CorePilot calculates completion time, waiting time, turnaround time, and averages.
-8. **Compare algorithms:** The same workload can be run independently through multiple algorithms and their results compared.
+1. **Create processes:** Add processes manually, generate a random workload, or load a sample scenario.
+2. **Configure each process:** Provide a process ID, arrival time, burst time, and priority.
+3. **Choose a scheduling algorithm:** Select FCFS, Priority Scheduling, Round Robin, or comparison mode.
+4. **Set algorithm options:** Configure the time quantum when using Round Robin.
+5. **Start the simulation:** The JavaScript scheduling engine processes arrivals and manages the appropriate ready data structure.
+6. **Observe the DSA operations:** Watch processes enter, leave, and move through the Queue, Min-Heap Priority Queue, or Circular Queue.
+7. **Follow CPU execution:** View the running process, process states, and Gantt chart.
+8. **Review and compare:** Inspect completion time, waiting time, turnaround time, and algorithm comparison results.
 
 ## Core Features
 
@@ -84,52 +84,75 @@ To keep simulations consistent and results reproducible, the initial implementat
 
 - Add and remove processes.
 - Assign process ID, arrival time, burst time, and priority.
-- Generate random processes automatically.
+- Generate random processes.
 - Load predefined sample workloads.
-- Validate inputs before running a simulation.
+- Validate process inputs before simulation.
 
 ### 2. Scheduling Configuration
 
 - Select FCFS, Priority Scheduling, or Round Robin.
-- Set the Round Robin time quantum.
-- Choose a single-algorithm run or compare supported algorithms.
+- Configure the Round Robin time quantum.
+- Run one algorithm or compare multiple algorithms using the same workload.
 
-### 3. Interactive Simulation
+### 3. Interactive DSA Visualization
 
-- Start, pause, resume, and restart a simulation.
-- Advance execution step by step.
+The data structures themselves are a major part of the project demonstration.
+
+- **Queue:** Show the front and rear, and animate enqueue and dequeue operations.
+- **Priority Queue / Min-Heap:** Show the heap structure, insertion, heapify-up, extraction of the minimum-priority value, and heapify-down.
+- **Circular Queue:** Show front and rear positions, wrap-around behavior, enqueue, dequeue, and re-queuing of unfinished processes.
+- Highlight which process is selected and explain why it is selected.
+- Display the data structure's state as the simulation advances.
+
+### 4. Interactive CPU Simulation
+
+- Start, pause, resume, step through, and restart a simulation.
 - Adjust simulation speed.
 - View the currently running process and its remaining burst time.
-- View ready, running, completed, and not-yet-arrived processes.
-- Observe the ready queue change as processes arrive and execute.
+- Distinguish ready, running, completed, and not-yet-arrived processes.
+- Observe CPU idle periods when no process is ready.
 
-### 4. Gantt Chart
+### 5. Gantt Chart
 
 - Display the CPU execution timeline.
-- Show process IDs and start/end times.
-- Represent CPU idle periods when no process is ready.
-- Make preemption and repeated turns visible where applicable, especially in Round Robin.
+- Show process IDs and execution start/end times.
+- Represent CPU idle periods.
+- Make repeated execution turns visible in Round Robin.
 
-### 5. Performance Analysis
+### 6. Performance Analysis
 
 - Calculate completion, turnaround, and waiting times.
 - Display average waiting time and average turnaround time.
-- Compare the results of different scheduling algorithms on the same workload.
+- Compare algorithm results for the same workload.
 
-## Data Structures and DSA Concepts
+## DSA Implementation
 
-CorePilot is designed around the data structures that make the scheduling decisions possible.
+**This is the most important part of CorePilot.** The team will write the data structures manually in JavaScript so their internal logic and operations can be demonstrated and explained.
 
-| Data structure / concept | Planned use |
+| DSA concept | Planned implementation | Used by |
+|---|---|---|
+| **Queue** | Custom Queue class using FIFO behavior, with enqueue, dequeue, front/peek, and empty checks. | FCFS |
+| **Priority Queue** | Custom Priority Queue implemented using a Min-Heap, with insertion, extract-min, and heapify operations. | Priority Scheduling |
+| **Circular Queue** | Custom array-based Circular Queue with front/rear tracking and wrap-around logic. | Round Robin |
+| **Array** | Store process information and simulation records where appropriate. | Process management and simulation |
+| **Heap** | Maintain the heap property when inserting or removing priority items. | Priority Queue |
+
+### Implementation principles
+
+- Do not use a built-in Queue or Priority Queue library to perform the project's core operations.
+- Implement the data structures and their important operations ourselves.
+- Keep each data structure in a separate, understandable module or class.
+- Explain the logic behind each operation in code comments and project documentation where useful.
+- Test the data structures independently before connecting them to the scheduling algorithms.
+- Show the data structure state in the website so users can connect the code to its behavior.
+
+### DSA operations to explain in the presentation
+
+| Data structure | Important concepts |
 |---|---|
-| **Queue** | Maintains the FCFS ready-process order. |
-| **Circular Queue** | Cycles unfinished processes through Round Robin turns. |
-| **Priority Queue** | Selects the next process according to priority. |
-| **Binary Heap** | Provides an efficient implementation of the priority queue. |
-| **Array / Vector** | Stores process information and simulation results. |
-| **Gantt timeline / execution history** | Records the order and duration of CPU execution. |
-
-Where appropriate, the core data structures—particularly the heap-based priority queue—will be implemented directly as part of the DSA work rather than relying only on library abstractions.
+| Queue | FIFO, Front, Rear, Enqueue, Dequeue, Empty Queue |
+| Priority Queue (Min-Heap) | Priority, Heap Property, Insert, Extract-Min, Heapify-Up, Heapify-Down |
+| Circular Queue | Front, Rear, Enqueue, Dequeue, Modulo / Wrap-Around, Full and Empty Conditions |
 
 ## Performance Metrics
 
@@ -137,7 +160,7 @@ CorePilot will calculate the following metrics for each process:
 
 | Metric | Meaning | Formula |
 |---|---|---|
-| **Completion Time (CT)** | Time at which a process finishes. | Determined by the simulation |
+| **Completion Time (CT)** | Time at which a process finishes. | Determined by simulation |
 | **Turnaround Time (TAT)** | Total time from arrival to completion. | `TAT = CT - AT` |
 | **Waiting Time (WT)** | Total time spent waiting for CPU execution. | `WT = TAT - BT` |
 
@@ -151,19 +174,20 @@ Average metrics:
 - `Average Waiting Time = Sum of Waiting Times / Number of Processes`
 - `Average Turnaround Time = Sum of Turnaround Times / Number of Processes`
 
-The simulator may also report CPU utilization when the simulation model and workload make that metric meaningful.
+CPU utilization may also be included if it can be calculated consistently from the simulation timeline.
 
-## Proposed Technology Stack
+## Technology Stack
 
-The final stack will be confirmed during implementation. The current proposal is:
-
-| Layer | Proposed technology | Responsibility |
+| Layer | Technology | Responsibility |
 |---|---|---|
-| Scheduling engine | **C++** | Process simulation and DSA implementations |
-| User interface | **HTML, CSS, JavaScript** | Process input and interactive visualization |
-| Charts | **Custom Gantt chart / JavaScript charting** | Execution timeline and performance comparison |
+| Website structure | **HTML** | Page structure and interface elements |
+| Styling | **CSS** | Layout, visual design, responsiveness, and animations |
+| DSA and application logic | **JavaScript** | Custom data structures, scheduling algorithms, simulation, and interactions |
+| Visualization | **JavaScript / HTML / CSS** | Queue and heap views, process states, and Gantt chart |
+| Deployment | **Vercel** | Publish the website |
+| Version control and collaboration | **Git and GitHub** | Source code, teamwork, and project history |
 
-The interface and scheduling engine will need a defined communication method. That integration approach will be selected before implementation begins.
+The project will run as a client-side website. **A separate C++ backend, API server, or WebAssembly integration is not part of the current plan.** JavaScript will contain the actual DSA implementations and scheduling logic.
 
 ## Team Members
 
@@ -172,31 +196,32 @@ The interface and scheduling engine will need a defined communication method. Th
 | **Elman Touhid** | [@ElmanTouhid](https://github.com/ElmanTouhid) | To be finalized |
 | **Towsif Mahmood** | [@towsif9o9](https://github.com/towsif9o9) | To be finalized |
 
-Both team members are contributors to this project repository. Module ownership and individual responsibilities will be agreed upon by the team.
+Both team members will collaborate through the project repository. Individual module ownership will be agreed upon during development.
 
-## Planned Development Phases
+## Development Roadmap
 
-1. **Requirements and design** — confirm features, scheduling rules, interface flow, and team responsibilities.
-2. **Core data structures** — implement and test Queue, Circular Queue, and Heap-based Priority Queue.
-3. **Scheduling algorithms** — implement FCFS, non-preemptive Priority Scheduling, and Round Robin.
-4. **Metrics and validation** — calculate scheduling metrics and test edge cases such as idle CPU time and simultaneous arrivals.
-5. **Interface and visualization** — build process input, simulation controls, process-state views, and the Gantt chart.
-6. **Integration and comparison** — connect the interface to the scheduling engine and add algorithm comparison.
-7. **Testing and presentation** — verify results, document complexity, and prepare the project demonstration.
+1. **Planning and interface design** — finalize requirements, scheduling rules, and website layout.
+2. **Build the data structures** — implement and test the custom Queue, Min-Heap Priority Queue, and Circular Queue in JavaScript.
+3. **Build the scheduling algorithms** — implement FCFS, non-preemptive Priority Scheduling, and Round Robin using the custom structures.
+4. **Validate the scheduling engine** — test arrivals, ties, idle CPU time, time quantum behavior, and completion results.
+5. **Build the website** — create process input, controls, data structure visualizations, and the Gantt chart.
+6. **Integrate and compare** — connect the interface to the JavaScript engine and implement performance comparisons.
+7. **Test and deploy** — verify results, prepare the presentation, and publish the website through Vercel.
 
-## Project Scope and Limitations
+## Scope and Limitations
 
-- CorePilot is an educational simulator, not a real operating-system scheduler.
-- It will simulate a single CPU in the initial version.
-- The initial algorithm set is FCFS, non-preemptive Priority Scheduling, and Round Robin.
-- Real process management, multitasking on the host operating system, and multi-core scheduling are outside the initial scope.
-- Advanced algorithms or features may be considered only after the core implementation is complete.
+- CorePilot is an educational CPU scheduling simulator, not a real operating-system scheduler.
+- The initial version simulates a single CPU.
+- The initial algorithms are FCFS, non-preemptive Priority Scheduling, and Round Robin.
+- The core Queue, Priority Queue, and Circular Queue operations will be implemented manually in JavaScript.
+- Real process management, host operating-system control, and multi-core scheduling are outside the initial scope.
+- A separate backend API and C++ integration are not required for the current project plan.
 
 ---
 
 ## Repository
 
-Source code, implementation notes, and project updates will be maintained in this repository:
+Source code, implementation notes, and project updates will be maintained here:
 
 [https://github.com/ElmanTouhid/DS-project](https://github.com/ElmanTouhid/DS-project)
 
