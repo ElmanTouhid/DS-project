@@ -775,6 +775,31 @@ tbody tr:hover {
 }
 
 
+.admin-card .admin-team {
+    margin-top: 5px;
+}
+
+.admin-card .admin-team strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.admin-github {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--cyan);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.admin-github:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+
 /* =========================================
    FOOTER
 ========================================= */
